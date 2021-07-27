@@ -28,8 +28,7 @@ public class BillingFlowParams {
 
     @NonNull
     public static BillingFlowParams.Builder newBuilder() {
-        BillingFlowParams.Builder var0 = new BillingFlowParams.Builder((zzai)null);
-        return var0;
+        return new Builder();
     }
 
     private BillingFlowParams() {
@@ -69,24 +68,20 @@ public class BillingFlowParams {
         return this.zzg || this.zzb != null || this.zzd != null || this.zze != 0 || this.zza;
     }
 
-    @zzc
     public static class SubscriptionUpdateParams {
         private String zza;
         private int zzb = 0;
 
-        @zzc
         int getReplaceSkusProrationMode() {
             return this.zzb;
         }
 
-        @zzc
         @NonNull
         public static BillingFlowParams.SubscriptionUpdateParams.Builder newBuilder() {
-            BillingFlowParams.SubscriptionUpdateParams.Builder var0 = new BillingFlowParams.SubscriptionUpdateParams.Builder((zzai)null);
+            BillingFlowParams.SubscriptionUpdateParams.Builder var0 = new BillingFlowParams.SubscriptionUpdateParams.Builder();
             return var0;
         }
 
-        @zzc
         String getOldSkuPurchaseToken() {
             return this.zza;
         }
@@ -94,33 +89,29 @@ public class BillingFlowParams {
         private SubscriptionUpdateParams() {
         }
 
-        @zzc
         public static class Builder {
             private String zza;
             private int zzb = 0;
 
-            @zzc
             @NonNull
             public BillingFlowParams.SubscriptionUpdateParams.Builder setOldSkuPurchaseToken(@NonNull String purchaseToken) {
                 this.zza = purchaseToken;
                 return this;
             }
 
-            @zzc
             @NonNull
             public BillingFlowParams.SubscriptionUpdateParams.Builder setReplaceSkusProrationMode(int replaceSkusProrationMode) {
                 this.zzb = replaceSkusProrationMode;
                 return this;
             }
 
-            @zzc
             @NonNull
             public BillingFlowParams.SubscriptionUpdateParams build() {
                 if (TextUtils.isEmpty(this.zza) && TextUtils.isEmpty((CharSequence)null)) {
                     IllegalArgumentException var2 = new IllegalArgumentException("Old SKU purchase token/id must be provided.");
                     throw var2;
                 } else {
-                    BillingFlowParams.SubscriptionUpdateParams var1 = new BillingFlowParams.SubscriptionUpdateParams((zzai)null);
+                    BillingFlowParams.SubscriptionUpdateParams var1 = new BillingFlowParams.SubscriptionUpdateParams();
                     var1.zza = this.zza;
                     var1.zzb = this.zzb;
                     return var1;
@@ -160,7 +151,6 @@ public class BillingFlowParams {
             return this;
         }
 
-        @zzc
         @NonNull
         public BillingFlowParams.Builder setSubscriptionUpdateParams(@NonNull BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams) {
             this.zzb = subscriptionUpdateParams.getOldSkuPurchaseToken();
@@ -220,8 +210,8 @@ public class BillingFlowParams {
                     }
                 }
 
-                BillingFlowParams var12 = new BillingFlowParams((zzai)null);
-                var12.zza = ((SkuDetails)this.zze.get(0)).zzc().isEmpty() ^ true;
+                BillingFlowParams var12 = new BillingFlowParams();
+                var12.zza = !this.zze.get(0).zzc().isEmpty();
                 var12.zzb = this.zza;
                 var12.zzd = this.zzc;
                 var12.zzc = this.zzb;
@@ -246,7 +236,6 @@ public class BillingFlowParams {
         int IMMEDIATE_AND_CHARGE_PRORATED_PRICE = 2;
         int IMMEDIATE_WITHOUT_PRORATION = 3;
         int DEFERRED = 4;
-        @zzb
         int IMMEDIATE_AND_CHARGE_FULL_PRICE = 5;
     }
 }

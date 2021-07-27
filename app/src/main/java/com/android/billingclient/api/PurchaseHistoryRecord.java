@@ -13,7 +13,6 @@ public class PurchaseHistoryRecord {
     private final String zzb;
     private final JSONObject zzc;
 
-    @zzd
     public int getQuantity() {
         return this.zzc.optInt("quantity", 1);
     }
@@ -60,7 +59,6 @@ public class PurchaseHistoryRecord {
         return var2;
     }
 
-    @zzc
     @NonNull
     public ArrayList<String> getSkus() {
         ArrayList var1 = new ArrayList();

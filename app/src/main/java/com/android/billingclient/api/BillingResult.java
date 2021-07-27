@@ -12,8 +12,7 @@ public final class BillingResult {
 
     @NonNull
     public static BillingResult.Builder newBuilder() {
-        BillingResult.Builder var0 = new BillingResult.Builder((zzaj)null);
-        return var0;
+        return new Builder();
     }
 
     @NonNull

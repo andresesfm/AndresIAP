@@ -7,7 +7,7 @@ public final class AcknowledgePurchaseParams {
 
     @NonNull
     public static AcknowledgePurchaseParams.Builder newBuilder() {
-        AcknowledgePurchaseParams.Builder var0 = new AcknowledgePurchaseParams.Builder((zza)null);
+        AcknowledgePurchaseParams.Builder var0 = new AcknowledgePurchaseParams.Builder();
         return var0;
     }
 
@@ -34,7 +34,7 @@ public final class AcknowledgePurchaseParams {
                 IllegalArgumentException var2 = new IllegalArgumentException("Purchase token must be set");
                 throw var2;
             } else {
-                AcknowledgePurchaseParams var1 = new AcknowledgePurchaseParams((zza)null);
+                AcknowledgePurchaseParams var1 = new AcknowledgePurchaseParams();
                 var1.zza = this.zza;
                 return var1;
             }

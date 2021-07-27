@@ -7,7 +7,7 @@ public final class ConsumeParams {
 
     @NonNull
     public static ConsumeParams.Builder newBuilder() {
-        ConsumeParams.Builder var0 = new ConsumeParams.Builder((zzal)null);
+        ConsumeParams.Builder var0 = new ConsumeParams.Builder();
         return var0;
     }
 
@@ -34,7 +34,7 @@ public final class ConsumeParams {
                 IllegalArgumentException var2 = new IllegalArgumentException("Purchase token must be set");
                 throw var2;
             } else {
-                ConsumeParams var1 = new ConsumeParams((zzal)null);
+                ConsumeParams var1 = new ConsumeParams();
                 var1.zza = this.zza;
                 return var1;
             }

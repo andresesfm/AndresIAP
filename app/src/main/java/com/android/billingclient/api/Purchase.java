@@ -25,7 +25,6 @@ public class Purchase {
         }
     }
 
-    @zzd
     public int getQuantity() {
         return this.zzc.optInt("quantity", 1);
     }
@@ -94,7 +93,6 @@ public class Purchase {
         return var2;
     }
 
-    @zzc
     @NonNull
     public ArrayList<String> getSkus() {
         ArrayList var1 = new ArrayList();

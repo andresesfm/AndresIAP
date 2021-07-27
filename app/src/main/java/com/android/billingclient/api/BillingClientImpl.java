@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
+
 import androidx.annotation.AnyThread;
 import androidx.annotation.Nullable;
 import com.android.billingclient.api.BillingResult.Builder;
@@ -38,19 +40,7 @@ class BillingClientImpl extends BillingClient {
     private volatile zzh zzd;
     private Context zze;
     private Context zzf;
-    private volatile zzd zzg;
     private volatile zzaf zzh;
-    private boolean zzi;
-    private boolean zzj;
-    private int zzk;
-    private boolean zzl;
-    private boolean zzm;
-    private boolean zzn;
-    private boolean zzo;
-    private boolean zzp;
-    private boolean zzq;
-    private boolean zzr;
-    private boolean zzs;
     private boolean zzt;
     private ExecutorService zzu;
 
@@ -205,7 +195,7 @@ class BillingClientImpl extends BillingClient {
                         var4 = new String(var1);
                     }
 
-                    com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", var4);
+                    Log.i("BillingClient", var4);
                     return zzak.zzv;
             }
         }
@@ -222,17 +212,17 @@ class BillingClientImpl extends BillingClient {
             SkuDetails var11 = (SkuDetails)var10.get(0);
             String var12 = var11.getType();
             if (var12.equals("subs") && !this.zzi) {
-                com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Current client doesn't support subscriptions.");
+                Log.i("BillingClient", "Current client doesn't support subscriptions.");
                 var31 = zzak.zzs;
                 this.zzE(var31);
                 return var31;
             } else if (var2.zzm() && !this.zzl) {
-                com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Current client doesn't support extra params for buy intent.");
+                Log.i("BillingClient", "Current client doesn't support extra params for buy intent.");
                 var31 = zzak.zzh;
                 this.zzE(var31);
                 return var31;
             } else if (var10.size() > 1 && !this.zzs) {
-                com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Current client doesn't support multi-item purchases.");
+                Log.i("BillingClient", "Current client doesn't support multi-item purchases.");
                 var31 = zzak.zzu;
                 this.zzE(var31);
                 return var31;
@@ -422,8 +412,8 @@ class BillingClientImpl extends BillingClient {
                                 StringBuilder var32 = new StringBuilder(52);
                                 var32.append("Unable to buy item, Error response code: ");
                                 var32.append(var4);
-                                com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", var32.toString());
-                                Builder var33 = BillingResult.newBuilder();
+                                Log.i("BillingClient", var32.toString());
+                                BillingResult.Builder var33 = BillingResult.newBuilder();
                                 var33.setResponseCode(var4);
                                 var33.setDebugMessage(var5);
                                 var31 = var33.build();
@@ -460,7 +450,7 @@ class BillingClientImpl extends BillingClient {
                     var39.append("Exception while launching billing flow: ; for sku: ");
                     var39.append(var3);
                     var39.append("; try to reconnect");
-                    com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", var39.toString());
+                    Log.i("BillingClient", var39.toString());
                     var31 = zzak.zzq;
                     this.zzE(var31);
                     return var31;
@@ -472,7 +462,7 @@ class BillingClientImpl extends BillingClient {
                 var39.append("Time out while launching billing flow: ; for sku: ");
                 var39.append(var3);
                 var39.append("; try to reconnect");
-                com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", var39.toString());
+                Log.i("BillingClient", var39.toString());
                 var31 = zzak.zzr;
                 this.zzE(var31);
                 return var31;
@@ -486,7 +476,7 @@ class BillingClientImpl extends BillingClient {
             var6 = new PurchasesResult(zzak.zzq, (List)null);
             return var6;
         } else if (TextUtils.isEmpty(var1)) {
-            com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Please provide a valid SKU type.");
+            Log.i("BillingClient", "Please provide a valid SKU type.");
             var6 = new PurchasesResult(zzak.zzg, (List)null);
             return var6;
         } else {
@@ -523,7 +513,7 @@ class BillingClientImpl extends BillingClient {
     @AnyThread
     BillingClientImpl(@Nullable String var1, boolean var2, Context var3, PurchasesUpdatedListener var4) {
         try {
-            var1 = (String)Class.forName("com.android.billingclient.ktx.BuildConfig").getField("VERSION_NAME").get((Object)null);
+            var1 = (String)Class.forName("com.android.billingclient.ktx.BuildConfig").getField("VERSION_NAME").get(null);
         } catch (Exception var5) {
             var1 = "4.0.0";
         }
@@ -546,7 +536,7 @@ class BillingClientImpl extends BillingClient {
         if (!this.isReady()) {
             var2.onAcknowledgePurchaseResponse(zzak.zzq);
         } else if (TextUtils.isEmpty(var1.getPurchaseToken())) {
-            com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Please provide a valid purchase token.");
+            Log.i("BillingClient", "Please provide a valid purchase token.");
             var2.onAcknowledgePurchaseResponse(zzak.zzk);
         } else if (!this.zzn) {
             var2.onAcknowledgePurchaseResponse(zzak.zzb);
@@ -594,10 +584,10 @@ class BillingClientImpl extends BillingClient {
         } else if (var2 != null && var2.getSkuDetails() != null) {
             String var16 = var2.getSkuDetails().getSku();
             if (var16 == null) {
-                com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Please fix the input params. priceChangeFlowParams must contain valid sku.");
+                Log.i("BillingClient", "Please fix the input params. priceChangeFlowParams must contain valid sku.");
                 this.zzI(zzak.zzn, var3);
             } else if (!this.zzm) {
-                com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Current client doesn't support price change confirmation flow.");
+                Log.i("BillingClient", "Current client doesn't support price change confirmation flow.");
                 this.zzI(zzak.zzi, var3);
             } else {
                 Bundle var4 = new Bundle();
@@ -617,7 +607,7 @@ class BillingClientImpl extends BillingClient {
                             var4 = (Bundle)var17.get(5000L, TimeUnit.MILLISECONDS);
                             var19 = com.google.android.gms.internal.play_billing.zza.zza(var4, "BillingClient");
                             String var6 = com.google.android.gms.internal.play_billing.zza.zzh(var4, "BillingClient");
-                            Builder var7 = BillingResult.newBuilder();
+                            BillingResult.Builder var7 = BillingResult.newBuilder();
                             var7.setResponseCode(var19);
                             var7.setDebugMessage(var6);
                             var21 = var7.build();
@@ -634,7 +624,7 @@ class BillingClientImpl extends BillingClient {
                                 StringBuilder var14 = new StringBuilder(68);
                                 var14.append("Unable to launch price change flow, error response code: ");
                                 var14.append(var19);
-                                com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", var14.toString());
+                                Log.i("BillingClient", var14.toString());
                                 this.zzI(var21, var3);
                                 return;
                             } catch (CancellationException | TimeoutException var8) {
@@ -665,7 +655,7 @@ class BillingClientImpl extends BillingClient {
                     var18.append("Exception caught while launching Price Change Flow for sku: ");
                     var18.append(var16);
                     var18.append("; try to reconnect");
-                    com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", var18.toString());
+                    Log.i("BillingClient", var18.toString());
                     this.zzI(zzak.zzq, var3);
                     return;
                 }
@@ -675,11 +665,11 @@ class BillingClientImpl extends BillingClient {
                 var18.append("Time out while launching Price Change Flow for sku: ");
                 var18.append(var16);
                 var18.append("; try to reconnect");
-                com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", var18.toString());
+                Log.i("BillingClient", var18.toString());
                 this.zzI(zzak.zzr, var3);
             }
         } else {
-            com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Please fix the input params. priceChangeFlowParams must contain valid sku.");
+            Log.i("BillingClient", "Please fix the input params. priceChangeFlowParams must contain valid sku.");
             this.zzI(zzak.zzn, var3);
         }
     }
@@ -701,7 +691,7 @@ class BillingClientImpl extends BillingClient {
         if (!this.isReady()) {
             listener.onQueryPurchasesResponse(zzak.zzq, com.google.android.gms.internal.play_billing.zzp.zzg());
         } else if (TextUtils.isEmpty(skuType)) {
-            com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Please provide a valid SKU type.");
+            Log.i("BillingClient", "Please provide a valid SKU type.");
             listener.onQueryPurchasesResponse(zzak.zzg, com.google.android.gms.internal.play_billing.zzp.zzg());
         } else {
             zzaa var3 = new zzaa(this, skuType, listener);
@@ -719,10 +709,10 @@ class BillingClientImpl extends BillingClient {
             String var3 = var1.getSkuType();
             List var7 = var1.getSkusList();
             if (TextUtils.isEmpty(var3)) {
-                com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Please fix the input params. SKU type can't be empty.");
+                Log.i("BillingClient", "Please fix the input params. SKU type can't be empty.");
                 var2.onSkuDetailsResponse(zzak.zzg, (List)null);
             } else if (var7 == null) {
-                com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Please fix the input params. The list of SKUs can't be empty - set SKU list or SkuWithOffer list.");
+                Log.i("BillingClient", "Please fix the input params. The list of SKUs can't be empty - set SKU list or SkuWithOffer list.");
                 var2.onSkuDetailsResponse(zzak.zzf, (List)null);
             } else {
                 ArrayList var4 = new ArrayList();
@@ -751,10 +741,10 @@ class BillingClientImpl extends BillingClient {
             com.google.android.gms.internal.play_billing.zza.zzj("BillingClient", "Service connection is valid. No need to re-initialize.");
             var3.onBillingSetupFinished(zzak.zzp);
         } else if (this.zza == 1) {
-            com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Client is already in the process of connecting to billing service.");
+            Log.i("BillingClient", "Client is already in the process of connecting to billing service.");
             var3.onBillingSetupFinished(zzak.zzd);
         } else if (this.zza == 3) {
-            com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Client was already closed and can't be reused. Please create another instance.");
+            Log.i("BillingClient", "Client was already closed and can't be reused. Please create another instance.");
             var3.onBillingSetupFinished(zzak.zzq);
         } else {
             this.zza = 1;
@@ -780,9 +770,9 @@ class BillingClientImpl extends BillingClient {
                             return;
                         }
 
-                        com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Connection to Billing service is blocked.");
+                        Log.i("BillingClient", "Connection to Billing service is blocked.");
                     } else {
-                        com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "The device doesn't have valid Play Store.");
+                        Log.i("BillingClient", "The device doesn't have valid Play Store.");
                     }
                 }
             }
@@ -798,10 +788,10 @@ class BillingClientImpl extends BillingClient {
             com.google.android.gms.internal.play_billing.zza.zzj("BillingClient", "Service connection is valid. No need to re-initialize.");
             var1.onBillingSetupFinished(zzak.zzp);
         } else if (this.zza == 1) {
-            com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Client is already in the process of connecting to billing service.");
+            Log.i("BillingClient", "Client is already in the process of connecting to billing service.");
             var1.onBillingSetupFinished(zzak.zzd);
         } else if (this.zza == 3) {
-            com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Client was already closed and can't be reused. Please create another instance.");
+            Log.i("BillingClient", "Client was already closed and can't be reused. Please create another instance.");
             var1.onBillingSetupFinished(zzak.zzq);
         } else {
             this.zza = 1;
@@ -827,9 +817,9 @@ class BillingClientImpl extends BillingClient {
                             return;
                         }
 
-                        com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Connection to Billing service is blocked.");
+                        Log.i("BillingClient", "Connection to Billing service is blocked.");
                     } else {
-                        com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "The device doesn't have valid Play Store.");
+                        Log.i("BillingClient", "The device doesn't have valid Play Store.");
                     }
                 }
             }
@@ -915,7 +905,7 @@ class BillingClientImpl extends BillingClient {
             }
         }
 
-        com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", "Exception while checking if billing is supported; try to reconnect");
+        Log.i("BillingClient", "Exception while checking if billing is supported; try to reconnect");
         return zzak.zzq;
     }
 
@@ -938,7 +928,7 @@ class BillingClientImpl extends BillingClient {
             StringBuilder var16 = new StringBuilder(var14 + 28);
             var16.append("Async task throws exception ");
             var16.append(var11);
-            com.google.android.gms.internal.play_billing.zza.zzk("BillingClient", var16.toString());
+            Log.i("BillingClient", var16.toString());
             return null;
         }
 

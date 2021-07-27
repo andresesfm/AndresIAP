@@ -10,8 +10,7 @@ public class SkuDetailsParams {
 
     @NonNull
     public static SkuDetailsParams.Builder newBuilder() {
-        SkuDetailsParams.Builder var0 = new SkuDetailsParams.Builder((zzan)null);
-        return var0;
+        return new Builder();
     }
 
     @NonNull

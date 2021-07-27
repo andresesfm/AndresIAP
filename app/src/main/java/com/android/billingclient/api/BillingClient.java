@@ -16,8 +16,7 @@ public abstract class BillingClient {
     @AnyThread
     @NonNull
     public static BillingClient.Builder newBuilder(@NonNull Context context) {
-        BillingClient.Builder var1 = new BillingClient.Builder(context, (zzi)null);
-        return var1;
+        return new Builder(context);
     }
 
     @AnyThread
@@ -51,7 +50,6 @@ public abstract class BillingClient {
     @AnyThread
     public abstract void queryPurchaseHistoryAsync(@NonNull String var1, @NonNull PurchaseHistoryResponseListener var2);
 
-    @zze
     @AnyThread
     public abstract void queryPurchasesAsync(@NonNull String var1, @NonNull PurchasesResponseListener var2);
 
@@ -70,6 +68,10 @@ public abstract class BillingClient {
         private volatile boolean zzb;
         private final Context zzc;
         private volatile PurchasesUpdatedListener zzd;
+
+        Builder(Context context ){
+            zzc = context;
+        }
 
         @NonNull
         public BillingClient.Builder enablePendingPurchases() {
